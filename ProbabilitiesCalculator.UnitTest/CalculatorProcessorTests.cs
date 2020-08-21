@@ -94,6 +94,11 @@ namespace ProbabilitiesCalculator.UnitTest
 
         private void CreateTestFile()
         {
+            var dirPath = Path.GetDirectoryName(validFilePath);
+            if (!Directory.Exists(dirPath))
+            {
+                Directory.CreateDirectory(dirPath);
+            }
             using (StreamWriter file = File.AppendText(validFilePath))
             {
                 var text = new StringBuilder();

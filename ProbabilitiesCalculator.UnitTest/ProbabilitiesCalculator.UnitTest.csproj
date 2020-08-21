@@ -7,6 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="TestData\**" />
+    <EmbeddedResource Remove="TestData\**" />
+    <None Remove="TestData\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="FluentAssertions.AspNetCore.Mvc" Version="3.0.0" />
     <PackageReference Include="FluentAssertions.Mvc5" Version="0.8.0" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.5.0" />
@@ -21,10 +27,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ProbabilitiesWebCalculator\ProbabilitiesWebCalculator.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="TestData\" />
   </ItemGroup>
 
 </Project>
