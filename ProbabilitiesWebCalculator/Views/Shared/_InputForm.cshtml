@@ -1,0 +1,65 @@
+﻿@model  ProbabilitiesWebCalculator.Models.ProbabilityCalculator
+<div id="InputForm">
+    @using (Html.BeginForm("CalculateResult", "Home", FormMethod.Post, new { id = "frmCalculator" }))
+    {
+        @Html.ValidationSummary(true)
+        <div class="container">
+            <fieldset>
+                <legend>Probabilities Calculator</legend>
+                <div class="form-group">
+
+                    @Html.LabelFor(model => model.ProbabilityA, new { @class = "col-sm" })
+
+                    @Html.EditorFor(model => model.ProbabilityA, new
+               {
+                   htmlAttributes = new
+                   {
+                       @class = "col-sm",
+                       @id = "ProbabilityA"
+                   }
+               })
+                    @Html.ValidationMessageFor(model => model.ProbabilityA)
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.ProbabilityB)
+                    @Html.EditorFor(model => model.ProbabilityB, new
+               {
+                   htmlAttributes = new
+                   {
+                       @class = "col-sm",
+                       @id = "ProbabilityB"
+                   }
+               })
+                    @Html.ValidationMessageFor(model => model.ProbabilityB)
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Mode)
+                    @Html.EnumDropDownListFor(model => model.Mode, new
+               {
+                   htmlAttributes = new
+                   {
+                       @class = "col-sm",
+                       @id = "Mode"
+                   }
+               })
+                </div>
+                @*<div class="form-group">
+                         @Html.LabelFor(model => model.Result)
+                         @Html.EditorFor(model => model.Result, new
+                    {
+                        htmlAttributes = new
+                        {
+                            @class = "col-sm",
+                            @id = "Result",
+                            disabled = "disabled",
+                            @readonly = "readonly"
+                        }
+                    })
+                     </div>*@
+                <div>
+                    <input type="button" value="Calculate" id="btnCalculate" class="btn btn-default" />
+                </div>
+            </fieldset>
+        </div>
+    }
+</div>

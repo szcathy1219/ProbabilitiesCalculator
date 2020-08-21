@@ -1,0 +1,59 @@
+﻿@model  ProbabilitiesWebCalculator.Models.ProbabilitiesWebCalculatorViewModel
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@{
+    ViewData["Title"] = "Probabilities Calculator";
+}
+
+<div class="text-center">
+    <div id="calculatorForm" class="container">
+        @{
+            Html.RenderPartial("~/Views/Shared/_InputForm.cshtml", Model.CalculationModel, ViewData);
+        }
+    </div>
+</div>
+<div>
+    @{
+        Html.RenderPartial("~/Views/Shared/_displayHistory.cshtml", Model.CalculationHistory, ViewData);
+    }
+</div>
+@section Scripts{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#btnCalculate").click(function () {
+                var data = {
+                    ProbabilityA: $("#ProbabilityA").val(),
+                    ProbabilityB: $("#ProbabilityB").val(),
+                    Mode: $("#Mode").val(),
+                    Result: $("#Result").val()
+                };
+
+                $.ajax({
+                    url: $("#frmCalculator").attr('action'),
+                    type: $("#frmCalculator").attr('method'),
+                    data: JSON.stringify(data),
+                    contentType: "application/json",
+                    cache: false,
+                    success: function (data) {
+                        location.reload();
+                        //alert("View Model Passed Successfully");
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        //alert("Error detected");
+                    }
+                });
+            }).click(function () {
+                $("#historyTable tbody tr:first").css("background-color", "#FFFF66");
+            });
+
+
+            $("#btnDisplayForm").click(function () {
+                $("#DisplayHistory").toggle("slow", function () {
+                    // Animation complete.
+                });
+            });
+        });
+
+    </script>
+}
